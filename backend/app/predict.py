@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from joblib import load
 import pandas as pd
+from pathlib import Path
 
 router = APIRouter()
 
@@ -20,7 +21,8 @@ class PredictResponse(BaseModel):
     home_goals: int
     away_goals: int
 
-model = load("../training/models/best_model_MultiOutputRegressor.joblib")
+_MODEL_PATH = Path(__file__).parent / "best_model_MultiOutputRegressor.joblib"
+model = load(_MODEL_PATH)
 
 @router.post("/predict", response_model=PredictResponse)
 async def predict(request: PredictRequest):

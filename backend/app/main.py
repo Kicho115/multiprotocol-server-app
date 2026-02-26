@@ -6,11 +6,13 @@ from app.database import get_db
 import os
 
 app = FastAPI()
+        
+_raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
+allowed_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
-# Permitir acceso desde SvelteKit (ajustar para producción)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ajustar para tu dominio de frontend en producción
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
