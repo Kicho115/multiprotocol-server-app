@@ -1,5 +1,4 @@
 [build]
-  base    = "frontend"
   command = "npm run build"
   publish = ".netlify/static"
 
@@ -7,7 +6,7 @@
   NODE_VERSION = "20"
 
 [dev]
-  command    = "npm --prefix frontend run dev"
+  command    = "npm run dev"
   targetPort = 5173
   port       = 8888
   autoLaunch = false
