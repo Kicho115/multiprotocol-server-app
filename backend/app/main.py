@@ -3,12 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.routes import router  # Tu archivo de rutas
 from app.database import get_db
-import os
+from app.config import settings
 
 app = FastAPI()
-        
-_raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")
-allowed_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+
+allowed_origins = [o.strip() for o in settings.ALLOWED_ORIGINS.split(",") if o.strip()]
 
 app.add_middleware(
     CORSMiddleware,

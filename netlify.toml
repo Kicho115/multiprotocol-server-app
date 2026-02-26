@@ -6,7 +6,8 @@
 [build.environment]
   NODE_VERSION = "20"
 
-[[redirects]]
-  from   = "/*"
-  to     = "/.netlify/functions/handler"
-  status = 200
+[dev]
+  command    = "npm --prefix frontend run dev"
+  targetPort = 5173
+  port       = 8888
+  autoLaunch = false

@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     EMAIL_PASSWORD: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60  # 1 hour expiration
+    ALLOWED_ORIGINS: str
 
     class Config:
         env_file = "app/.env"
